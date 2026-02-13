@@ -95,38 +95,17 @@
       };
 
       const appendToSheet = async (sheetName, data) => {
-        const response = await fetch(APPS_SCRIPT_URL, {
-          method: 'POST',
-          body: JSON.stringify({
-            action: 'add',
-            table: sheetName,
-            data: data
-          })
-        });
+        const response = await fetch(`${APPS_SCRIPT_URL}?action=add&table=${sheetName}&data=${encodeURIComponent(JSON.stringify(data))}`);
         return response.json();
       };
 
       const updateSheet = async (sheetName, data) => {
-        const response = await fetch(APPS_SCRIPT_URL, {
-          method: 'POST',
-          body: JSON.stringify({
-            action: 'update',
-            table: sheetName,
-            data: data
-          })
-        });
+        const response = await fetch(`${APPS_SCRIPT_URL}?action=update&table=${sheetName}&data=${encodeURIComponent(JSON.stringify(data))}`);
         return response.json();
       };
 
       const deleteFromSheet = async (sheetName, id) => {
-        const response = await fetch(APPS_SCRIPT_URL, {
-          method: 'POST',
-          body: JSON.stringify({
-            action: 'delete',
-            table: sheetName,
-            data: { id }
-          })
-        });
+        const response = await fetch(`${APPS_SCRIPT_URL}?action=delete&table=${sheetName}&data=${encodeURIComponent(JSON.stringify({ id }))}`);
         return response.json();
       };
 
